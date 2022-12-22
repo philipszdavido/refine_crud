@@ -23,11 +23,7 @@ function App() {
   return (
     <ChakraProvider theme={refineTheme}>
       <Refine
-        dataProvider={DataProvider(
-          "https://api.fake-rest.refine.dev",
-          axiosInstance
-        )}
-        // dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
+        dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
         notificationProvider={notificationProvider()}
         ReadyPage={ReadyPage}
         catchAll={<ErrorComponent />}

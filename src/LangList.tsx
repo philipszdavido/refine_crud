@@ -29,7 +29,15 @@ export const LangList: React.FC = () => {
         header: "Title",
         accessorKey: "title",
       },
-
+      {
+        id: "regions",
+        header: "Region",
+        cell: function render({ row }) {
+          return row?.original?.regions
+            ?.map((region: any) => region?.name)
+            .join(", ");
+        },
+      },
       {
         id: "createdAt",
         header: "Created At",
@@ -74,6 +82,9 @@ export const LangList: React.FC = () => {
           order: "desc",
         },
       ],
+      metaData: {
+        populate: ["regions"],
+      },
     },
   });
 
@@ -106,6 +117,14 @@ export const LangList: React.FC = () => {
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <Td key={cell.id}>
+                    {/* {
+                      (console.log(
+                        cell,
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      ),
+                      null)
+                    } */}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
                 ))}
